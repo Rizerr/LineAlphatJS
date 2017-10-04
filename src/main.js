@@ -2,11 +2,11 @@ const LineAPI = require('./api');
 const { Message, OpType, Location } = require('../curve-thrift/line_types');
 let exec = require('child_process').exec;
 
-const myBot = ['u78b179f959eba71ec2de09233281c49e','uc93c736a8b385208c2aa7aed58de2ceb','u236b88bf1eac2b90e848a6198152e647','u763977dab29cbd6fa0cbfa9f159b768b'];
+const myBot = ['uf51ed4f092b7686f297a23ed3789ae34'];
 
 
-function isAdminOrBot(param) {
-    return myBot.includes(param);
+function isAdminOrBot(rizer) {
+    return myBot.includes(rizer);
 }
 
 
@@ -89,14 +89,14 @@ class LINE extends LineAPI {
         this.getOprationType(operation);
     }
 
-    async cancelAll(gid) {
+    async cancelAll(group) {
         let { listPendingInvite } = await this.searchGroup(gid);
         if(listPendingInvite.length > 0){
             this._cancel(gid,listPendingInvite);
         }
     }
 
-    async searchGroup(gid) {
+    async searchGroup(group) {
         let listPendingInvite = [];
         let thisgroup = await this._getGroups([gid]);
         if(thisgroup[0].invitee !== null) {
@@ -203,8 +203,8 @@ class LINE extends LineAPI {
             }
         }
 
-        if(txt == 'halo' || txt == 'sya') {
-            this._sendMessage(seq, 'halo disini tasya :)');
+        if(txt == 'halo' || txt == 'riz') {
+            this._sendMessage(seq, 'halo disini rizer :)');
         }
 
         if(txt == 'speed') {
